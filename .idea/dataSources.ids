@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MySQL - onlineLibrary@localhost" uuid="cd481dfb-ee25-4b86-96b1-a3ebf9e53381">
+    <database-info product="MySQL" version="5.7.9-log" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
+    <schema name="" catalog="onlinelibrary"/>
+    <table name="book" schema="" catalog="onlinelibrary" type="TABLE">
+      <column name="book_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="description" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="available" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6"/>
+      <column name="isbn" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="title" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="username" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="book_id"/>
+      <foreign-key name="FK2E3AE9C93BD238" columns="username" ref-table="users" ref-schema="" ref-catalog="onlinelibrary" ref-columns="username" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FK2E3AE9C93BD238" unique="false" columns="username"/>
+    </table>
+    <table name="user_roles" schema="" catalog="onlinelibrary" type="TABLE">
+      <column name="user_role_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="role" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="username" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="user_role_id"/>
+    </table>
+    <table name="users" schema="" catalog="onlinelibrary" type="TABLE">
+      <column name="username" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="enabled" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="password" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="username"/>
+      <exported-key name="FK2E3AE9C93BD238" table="book" schema="" catalog="onlinelibrary" columns="username"/>
+    </table>
+  </data-source>
+</component>
