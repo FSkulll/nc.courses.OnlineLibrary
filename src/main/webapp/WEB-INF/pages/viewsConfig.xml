@@ -12,10 +12,10 @@
     </definition>
     <definition name="register" extends="template">
         <put-attribute name="title" value="Title Register"/>
-        <put-attribute name="content" value="/WEB-INF/pages/views/manageUsers/register.jsp" />
+        <put-attribute name="content" value="/WEB-INF/pages/views/account/register.jsp" />
     </definition>
     <definition name="manage" extends="template">
         <put-attribute name="title" value="Title manage"/>
-        <put-attribute name="content" value="/WEB-INF/pages/views/manageUsers/manage.jsp"/>
+        <put-attribute name="content" value="/WEB-INF/pages/views/account/manage.jsp"/>
     </definition>
 </tiles-definitions>

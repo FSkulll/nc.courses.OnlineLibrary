@@ -36,7 +36,7 @@
                 <c:if test = "${user == 'guest'}">
                     <li><a href="<c:url value="/login.jsp"/>">Log In</a> </li>
                 </c:if>
-                <c:if test="${user != 'guest'}">
+                <c:if test="${user != 'guest' && user != null}">
                     <li><a href="<c:url value="/manage" />">${user}</a></li>
                     <li><a href="<c:url value="/logout" />">Log Out</a></li>
                 </c:if>

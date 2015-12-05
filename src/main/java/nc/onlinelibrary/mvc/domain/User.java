@@ -20,6 +20,12 @@ public class User {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
     private List<Book> booksListCurrent;
 
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "issue",
+            joinColumns = {@JoinColumn(name = "username") },
+            inverseJoinColumns = {@JoinColumn(name = "book_id")})
+    private List<Book> read;
+
     public String getUsername() {
         return username;
     }
@@ -51,4 +57,14 @@ public class User {
     public void setBooksListCurrent(List<Book> booksListCurrent) {
         this.booksListCurrent = booksListCurrent;
     }
+
+    public List<Book> getRead() {
+        return read;
+    }
+
+    public void setRead(List<Book> read) {
+        this.read = read;
+    }
+
+
 }

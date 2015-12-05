@@ -41,5 +41,7 @@
         </tr>
     </table>
 </form>
+<h2>If you don't have account. You may register</h2>
+<a href="/register" type="button">Register</a>
 </body>
 </html>
