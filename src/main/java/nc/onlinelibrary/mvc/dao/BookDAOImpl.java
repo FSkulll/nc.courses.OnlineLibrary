@@ -42,7 +42,7 @@ public class BookDAOImpl implements BookDAO {
     public Book getBook(Integer id) {
         Book book = (Book)sessionFactory.getCurrentSession().get(Book.class, id);
         book.setIsAvailable(false);
-        book.setOwner((User)SecurityContextHolder.getContext().getAuthentication().getPrincipal());//-------?
+        //book.setOwner((User)SecurityContextHolder.getContext().getAuthentication().getPrincipal());//-------?
         return book;
     }
 

@@ -44,4 +44,14 @@ public class BookServiceImpl implements BookService {
     public Book returnBook(Integer id) {
         return bookDAO.returnBook(id);
     }
+
+    @Override
+    public void editBook(Integer id) {
+
+    }
+
+    @Override
+    public List<Book> searchBook(String str) {
+        return bookDAO.searchBooks(str);
+    }
 }

@@ -8,4 +8,6 @@ public interface UserDAO {
     void addUser(User user);
     List listUsers();
     void deleteUser(String username);
+    User getUser(String username);
+
 }

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
+import javax.jws.soap.SOAPBinding;
 import java.util.List;
 
 @Repository
@@ -41,5 +42,14 @@ public class UserDAOImpl implements UserDAO {
         if(user != null){
             sessionFactory.getCurrentSession().delete(user);
         }
+    }
+
+    @Override
+    public User getUser(String username) {
+        User user = (User) sessionFactory.getCurrentSession().get(User.class, username);
+        if(user != null){
+            return user;
+        }
+        return null;
     }
 }

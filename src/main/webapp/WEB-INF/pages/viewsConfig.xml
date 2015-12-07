@@ -6,16 +6,28 @@
          <put-attribute name="footer" value="/WEB-INF/pages/views/shared/footer.jsp" />
          <put-attribute name="header" value="/WEB-INF/pages/views/shared/header.jsp" />
     </definition>
+    <definition name="index" extends="template">
+        <put-attribute name="title" value="Index Page"/>
+        <put-attribute name="content" value="/WEB-INF/pages/views/home/index.jsp" />
+    </definition>
     <definition name="books" extends="template">
-        <put-attribute name="title" value="Title Books"/>
+        <put-attribute name="title" value="Books Page"/>
         <put-attribute name="content" value="/WEB-INF/pages/views/home/books.jsp" />
     </definition>
     <definition name="register" extends="template">
-        <put-attribute name="title" value="Title Register"/>
-        <put-attribute name="content" value="/WEB-INF/pages/views/account/register.jsp" />
+        <put-attribute name="title" value="Register Page"/>
+        <put-attribute name="content" value="/register.jsp" />
     </definition>
     <definition name="manage" extends="template">
-        <put-attribute name="title" value="Title manage"/>
-        <put-attribute name="content" value="/WEB-INF/pages/views/account/manage.jsp"/>
+        <put-attribute name="title" value="Manage Page"/>
+        <put-attribute name="content" value="/WEB-INF/pages/views/account/settings.jsp"/>
+    </definition>
+    <definition name="login" extends="template">
+        <put-attribute name="title" value="Login Page"/>
+        <put-attribute name="content" value="/login.jsp"/>
+    </definition>
+    <definition name="addbook" extends="template">
+        <put-attribute name="title" value="CreateBook Page"/>
+        <put-attribute name="content" value="/WEB-INF/pages/views/manage/books/create_book.jsp"/>
     </definition>
 </tiles-definitions>

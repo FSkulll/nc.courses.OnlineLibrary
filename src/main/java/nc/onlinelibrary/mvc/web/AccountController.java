@@ -4,6 +4,7 @@ import nc.onlinelibrary.mvc.domain.User;
 import nc.onlinelibrary.mvc.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -20,9 +21,13 @@ public class AccountController {
 
     @RequestMapping("/register")
     public String regPage(Model model){
-        User user = new User();
-        model.addAttribute("user", user);
+        model.addAttribute("user", new User());
         return "register";
+    }
+
+    @RequestMapping("/login")
+    public String loginPage(Model model){
+        return "login";
     }
 
     @RequestMapping(value = "/create" ,method = RequestMethod.POST)

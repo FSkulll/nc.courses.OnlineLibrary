@@ -27,9 +27,19 @@ public class HomeController {
 	}
 
 	@RequestMapping("/index")
+	public String index(Map<String, Object> map){
+		map.put("username", SecurityContextHolder.getContext().getAuthentication().getName());
+		map.put("user", SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+		return "index";
+	}
+
+
+
+
+	@RequestMapping("/books")
 	public String listBooks(Map<String, Object> map){
-		map.put("book", new Book());
-		map.put("user", SecurityContextHolder.getContext().getAuthentication().getName());
+		map.put("username", SecurityContextHolder.getContext().getAuthentication().getName());
+		map.put("user", SecurityContextHolder.getContext().getAuthentication().getPrincipal());
 		map.put("listBook", bookService.listBook());
 		return "books";
 	}

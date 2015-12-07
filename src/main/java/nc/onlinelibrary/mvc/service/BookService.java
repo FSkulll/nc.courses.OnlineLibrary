@@ -11,5 +11,7 @@ public interface BookService {
     void removeBook(Integer id);
     Book getBook(Integer id);
     Book returnBook(Integer id);
+    void editBook(Integer id);
+    List<Book> searchBook(String str);
 
 }
