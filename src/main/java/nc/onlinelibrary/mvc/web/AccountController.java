@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.validation.Valid;
+
 @Controller
 public class AccountController {
 
@@ -26,13 +28,13 @@ public class AccountController {
     }
 
     @RequestMapping("/login")
-    public String loginPage(Model model){
+    public String loginPage(){
         return "login";
     }
 
     @RequestMapping(value = "/create" ,method = RequestMethod.POST)
-    public String addUser(@ModelAttribute("user") User user, BindingResult bindingResult) {
-
+    public String addUser(@Valid User user, BindingResult bindingResult) {
+        if(bindingResult.hasErrors()) return "register";
         userService.addUser(user);
         return "redirect:/index";
     }

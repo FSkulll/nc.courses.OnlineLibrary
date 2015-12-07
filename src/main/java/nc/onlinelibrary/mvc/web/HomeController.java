@@ -34,8 +34,6 @@ public class HomeController {
 	}
 
 
-
-
 	@RequestMapping("/books")
 	public String listBooks(Map<String, Object> map){
 		map.put("username", SecurityContextHolder.getContext().getAuthentication().getName());
@@ -43,15 +41,11 @@ public class HomeController {
 		map.put("listBook", bookService.listBook());
 		return "books";
 	}
-	@RequestMapping(value = "/add" ,method = RequestMethod.GET)
-	public String addBook(@ModelAttribute("book") Book book, BindingResult bindingResult) {
-		bookService.addBook(book);
-		return "redirect:/index";
-	}
-	@RequestMapping("/delete/{bookId}")
-	public String deleteBook(@PathVariable("bookId") Integer bookId) {
-		bookService.removeBook(bookId);
-		return "redirect:/index";
+
+	@RequestMapping("/show/{bookId}")
+	public String showBook(@PathVariable("bookId") Integer bookId) {
+		bookService.getBook(bookId);
+		return "show_info";
 	}
 
 	@RequestMapping("/get/{bookId}")

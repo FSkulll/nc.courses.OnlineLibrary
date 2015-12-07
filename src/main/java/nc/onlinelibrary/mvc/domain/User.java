@@ -1,6 +1,10 @@
 package nc.onlinelibrary.mvc.domain;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 @Entity
@@ -9,9 +13,11 @@ public class User {
 
     @Id
     @Column(name = "username")
+    @Pattern(regexp="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}",    message="Invalid email address.")
     private String username;
 
     @Column(name = "password")
+    @Size(min=6, max=20,    message="The password must be at least 6 characters long.")
     private String password;
 
     @Column(name = "enabled")

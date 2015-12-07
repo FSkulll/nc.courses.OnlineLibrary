@@ -30,4 +30,16 @@
         <put-attribute name="title" value="CreateBook Page"/>
         <put-attribute name="content" value="/WEB-INF/pages/views/manage/books/create_book.jsp"/>
     </definition>
+    <definition name="books_list" extends="template">
+        <put-attribute name="title" value="ListBooks Page"/>
+        <put-attribute name="content" value="/WEB-INF/pages/views/manage/books/list_books.jsp"/>
+    </definition>
+    <definition name="users_list" extends="template">
+        <put-attribute name="title" value="ListUsers Page"/>
+        <put-attribute name="content" value="/WEB-INF/pages/views/manage/users/list_users.jsp"/>
+    </definition>
+    <definition name="show_info" extends="template">
+        <put-attribute name="title" value="ListUsers Page"/>
+        <put-attribute name="content" value="/WEB-INF/pages/views/home/book_description.jsp"/>
+    </definition>
 </tiles-definitions>

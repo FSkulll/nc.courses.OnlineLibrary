@@ -29,7 +29,9 @@
     </div>
     <div class="form-group">
         <label for="rememberMe" class="col-md-2 control-label">Remember Me</label>
-        <div class="col-md-10"><input id="rememberMe" type="checkbox" name="j_spring_security_remember_me" /></div>
+        <div class="col-md-10">
+            <input id="rememberMe" type="checkbox" name="_spring_security_remember_me" class="checkbox"/>
+        </div>
     </div>
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">

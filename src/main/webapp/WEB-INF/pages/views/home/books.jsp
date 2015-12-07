@@ -7,32 +7,6 @@
 <h2>Books</h2>
 <h4>This is view all books in OnlineLibrary</h4>
 <hr/>
-<%--<c:if test="${!empty listBook}">--%>
-  <%--<table class="data">--%>
-    <%--<tr>--%>
-      <%--<th><spring:message code="label.title" /></th>--%>
-      <%--<th><spring:message code="label.description" /></th>--%>
-      <%--<th><spring:message code="label.isbn" /></th>--%>
-      <%--<th>&nbsp;</th>--%>
-    <%--</tr>--%>
-    <%--<c:forEach items="${listBook}" var="book">--%>
-      <%--<tr>--%>
-        <%--<td>${book.title}, ${book.name}</td>--%>
-        <%--<td>${book.description}</td>--%>
-        <%--<td>${book.isbn}</td>--%>
-        <%--<c:if test="${book.isAvailable()}">--%>
-          <%--<td><a href="get/${book.id}"><spring:message code="label.getbook" /></a></td>--%>
-        <%--</c:if>--%>
-        <%--<c:if test="${!book.isAvailable()}">--%>
-          <%--<td><a href="return/${book.id}"><spring:message code="label.returnbook" /></a></td>--%>
-        <%--</c:if>--%>
-        <%--<td><a href="delete/${book.id}"><spring:message code="label.delete" /></a></td>--%>
-      <%--</tr>--%>
-    <%--</c:forEach>--%>
-  <%--</table>--%>
-<%--</c:if>--%>
-
-
 
 
 <c:if test="${!empty listBook}">
@@ -52,7 +26,7 @@
               <c:if test="${!book.isAvailable()}">
                 <a href="return/${book.id}" class="btn btn-primary" role="button"><spring:message code="label.returnbook" /></a>
               </c:if>
-              <a href="delete/${book.id}" class="btn btn-danger" role="button"><spring:message code="label.delete" /></a>
+              <a href="#" class="btn btn-default" role="button">Show</a>
             </p>
           </div>
         </div>

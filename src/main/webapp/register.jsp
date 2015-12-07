@@ -13,13 +13,19 @@
             <form:label path="username" cssClass="col-md-2 control-label">
                 <spring:message code="label.email" />
             </form:label>
-            <div class="col-md-4"><form:input path="username" cssClass="form-control"/></div>
+            <div class="col-md-4">
+                <form:input path="username" cssClass="form-control"/>
+                <form:errors path="username" cssClass="alert-danger"/>
+            </div>
         </div>
         <div class="form-group">
             <form:label path="password" cssClass="col-md-2 control-label">
                 <spring:message code="label.password" />
             </form:label>
-            <div class="col-md-4"><form:input path="password" cssClass="form-control"/></div>
+            <div class="col-md-4">
+                <form:password path="password" cssClass="form-control"/>
+                <form:errors path="password" cssClass="alert-danger"/>
+            </div>
         </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

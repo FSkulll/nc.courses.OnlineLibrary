@@ -4,20 +4,6 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="from" uri="http://www.springframework.org/tags/form" %>
 
-    <%--<div class="navbar navbar-inverse navbar-fixed-top">--%>
-        <%--<div class="container">--%>
-                <%--<th> </th>--%>
-                <%--<th><a href="/register">Register</a> </th></tr>&nbsp;--%>
-                <%--<c:if test="${user != 'guest'}">--%>
-                    <%--<th><a href="<c:url value="/logout" />" > Logout</a></th>--%>
-                    <%--<th><a href="<c:url value="/manage" />" style="color: darkred">${user}</a></th>--%>
-                <%--</c:if>--%>
-            <%--</tr>--%>
-            <%--</thead>--%>
-        <%--</table>--%>
-        <%--</div>--%>
-    <%--</div>--%>
-
 
 <div class="navbar navbar-default navbar-fixed-top">
     <div class="container">
@@ -45,9 +31,9 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Manage<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Books</a></li>
+                            <li><a href="/books_list">Books</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="#">Users</a></li>
+                            <li><a href="/users_list">Users</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="#">Categories</a></li>
                         </ul>
