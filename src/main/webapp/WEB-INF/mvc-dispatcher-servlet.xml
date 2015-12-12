@@ -10,17 +10,16 @@
        http://www.springframework.org/schema/context
        http://www.springframework.org/schema/context/spring-context.xsd
        http://www.springframework.org/schema/mvc
-       https://www.springframework.org/schema/mvc/spring-mvc.xsd">
+       http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
 
     <context:annotation-config />
     <tx:annotation-driven transaction-manager="txManager" />
     <context:component-scan base-package="nc.onlinelibrary.mvc"/>
-    <context:component-scan base-package="nc.onlinelibrary.mvc.service"/>
-    <context:component-scan base-package="nc.onlinelibrary.mvc.dao"/>
 
     <mvc:annotation-driven/>
     <mvc:resources mapping="/resources/**" location="/resources/"/>
+
     <bean class="org.springframework.web.servlet.view.tiles3.TilesViewResolver"/>
 
     <bean class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
@@ -52,9 +51,16 @@
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
+    <!--<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">-->
+        <!--<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />-->
+        <!--<property name="url" value="jdbc:oracle:thin:@//localhost:1521/orcl.local" />-->
+        <!--<property name="username" value="hr" />-->
+        <!--<property name="password" value="170396" />-->
+    <!--</bean>-->
+
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver" />
-        <property name="url" value="jdbc:mysql://localhost:3306/onlineLibrary" />
+        <property name="url" value="jdbc:mysql://localhost:3306/onlinelibrary" />
         <property name="username" value="root" />
         <property name="password" value="root" />
     </bean>

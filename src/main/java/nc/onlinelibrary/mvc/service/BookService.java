@@ -13,5 +13,6 @@ public interface BookService {
     Book returnBook(Integer id);
     void editBook(Integer id);
     List<Book> searchBook(String str);
+    Book getBookWithRead(Integer id);
 
 }

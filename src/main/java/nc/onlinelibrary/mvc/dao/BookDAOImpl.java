@@ -2,6 +2,7 @@ package nc.onlinelibrary.mvc.dao;
 
 import nc.onlinelibrary.mvc.domain.Book;
 import nc.onlinelibrary.mvc.domain.User;
+import org.hibernate.Hibernate;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -42,7 +43,6 @@ public class BookDAOImpl implements BookDAO {
     public Book getBook(Integer id) {
         Book book = (Book)sessionFactory.getCurrentSession().get(Book.class, id);
         book.setIsAvailable(false);
-        //book.setOwner((User)SecurityContextHolder.getContext().getAuthentication().getPrincipal());//-------?
         return book;
     }
 
@@ -62,5 +62,12 @@ public class BookDAOImpl implements BookDAO {
             }
         }
         return books;
+    }
+
+    @Override
+    public Book getBookWithRead(Integer id) {
+        Book book = (Book) sessionFactory.getCurrentSession().get(Book.class, id);
+        Hibernate.initialize(book.getRead());
+        return book;
     }
 }

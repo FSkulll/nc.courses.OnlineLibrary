@@ -45,13 +45,21 @@ public class BookServiceImpl implements BookService {
         return bookDAO.returnBook(id);
     }
 
+    @Transactional
     @Override
     public void editBook(Integer id) {
 
     }
 
+    @Transactional
     @Override
     public List<Book> searchBook(String str) {
         return bookDAO.searchBooks(str);
+    }
+
+    @Transactional
+    @Override
+    public Book getBookWithRead(Integer id) {
+        return bookDAO.getBookWithRead(id);
     }
 }

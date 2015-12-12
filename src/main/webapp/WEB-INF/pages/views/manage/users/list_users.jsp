@@ -12,10 +12,12 @@
               <th><spring:message code="label.email" /></th>
             </tr>
             <c:forEach items="${listUsers}" var="user">
-              <tr>
-                <td>${user.username}</td>
-                <td><a href="remove/${user.username}"><spring:message code="label.delete" /></a></td>
-              </tr>
+                <c:if test="${user.username != 'admin'}">
+                  <tr>
+                    <td>${user.username}</td>
+                    <td><a href="remove/${user.username}"><spring:message code="label.delete" /></a></td>
+                  </tr>
+                </c:if>
             </c:forEach>
       </table>
   </div>

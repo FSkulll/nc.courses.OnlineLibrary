@@ -1,14 +1,18 @@
 package nc.onlinelibrary.mvc.dao;
 
+import nc.onlinelibrary.mvc.domain.Book;
 import nc.onlinelibrary.mvc.domain.ListRole;
 import nc.onlinelibrary.mvc.domain.User;
 import nc.onlinelibrary.mvc.domain.UserRoles;
+import org.hibernate.Hibernate;
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import javax.jws.soap.SOAPBinding;
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -51,5 +55,19 @@ public class UserDAOImpl implements UserDAO {
             return user;
         }
         return null;
+    }
+
+    @Override
+    public User getUserWithReadList(String username) {
+        User user = (User) sessionFactory.getCurrentSession().get(User.class, username);
+        Hibernate.initialize(user.getRead());
+        return user;
+    }
+
+    @Override
+    public void addToReadList(Book book, String username) {
+        User user = (User) sessionFactory.getCurrentSession().get(User.class, username);
+        Hibernate.initialize(user.getRead());
+        user.getRead().add(book);
     }
 }

@@ -6,6 +6,7 @@ import javax.imageio.ImageIO;
 import javax.persistence.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -43,8 +44,8 @@ public class Book{
     @ManyToOne//?????????????????????????????????????????????????
     @JoinColumn(name = "username")//?????????????????????????????????????????????????
     private User owner;//?????????????????????????????????????????????????
-
-    @ManyToMany(cascade = CascadeType.ALL)
+    
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(name = "issue",
             joinColumns = {@JoinColumn(name = "book_id")},
             inverseJoinColumns = {@JoinColumn(name = "username")})
@@ -132,25 +133,6 @@ public class Book{
     public void setCategory(Category category) {
         this.category = category;
     }
-
-//    public BufferedImage getCover() {
-//        InputStream in = new ByteArrayInputStream(cover);
-//        try {
-//            return ImageIO.read(in);
-//        } catch (IOException e) {
-//            System.out.println("Exc was created in Book domain (getCover)");
-//        }
-//    }
-//
-//    public void setCover(BufferedImage cover) {
-//        BufferedOutputStream out = new BufferedOutputStream(new ByteArrayOutputStream());
-//        try {
-//            ImageIO.write(cover, "PNG", out );
-//        } catch (IOException e) {
-//            System.out.println("Exc was created in Book domain (getCover)");
-//        }
-//        this.cover = out.toByteArray();
-//    }
 
     public byte[] getCover() {
         return cover;

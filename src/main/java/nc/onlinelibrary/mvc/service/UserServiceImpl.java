@@ -1,7 +1,9 @@
 package nc.onlinelibrary.mvc.service;
 
 import nc.onlinelibrary.mvc.dao.UserDAO;
+import nc.onlinelibrary.mvc.domain.Book;
 import nc.onlinelibrary.mvc.domain.User;
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -38,5 +40,17 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getUser(String username) {
         return userDAO.getUser(username);
+    }
+
+    @Transactional
+    @Override
+    public User getUserWithReadList(String username) {
+        return userDAO.getUserWithReadList(username);
+    }
+
+    @Transactional
+    @Override
+    public void addToReadList(Book book, String username) {
+        userDAO.addToReadList(book, username);
     }
 }

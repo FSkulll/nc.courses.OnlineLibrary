@@ -3,6 +3,7 @@ package nc.onlinelibrary.mvc.web;
 import nc.onlinelibrary.mvc.domain.Book;
 import nc.onlinelibrary.mvc.domain.User;
 import nc.onlinelibrary.mvc.service.BookService;
+import nc.onlinelibrary.mvc.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -12,6 +13,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import javax.jws.soap.SOAPBinding;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -20,6 +25,10 @@ public class HomeController {
 	@Qualifier("bookService")
 	@Autowired
 	private BookService bookService;
+
+	@Qualifier("userService")
+	@Autowired
+	private UserService userService;
 
 	@RequestMapping("/")
 	public String homePage(){
@@ -50,7 +59,10 @@ public class HomeController {
 
 	@RequestMapping("/get/{bookId}")
 	public String getBook(@PathVariable("bookId") Integer bookId) {
-		bookService.getBook(bookId);
+		Book book = bookService.getBookWithRead(bookId);
+		User user = userService.getUserWithReadList(SecurityContextHolder.getContext().getAuthentication().getName());
+		userService.addToReadList(book, user.getUsername());
+		book.setIsAvailable(false);
 		return "redirect:/index";
 	}
 

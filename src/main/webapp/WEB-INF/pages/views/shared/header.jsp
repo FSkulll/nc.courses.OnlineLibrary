@@ -46,7 +46,7 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hello, ${username}<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">My List</a></li>
+                            <li><a href="<c:url value="/reading_list" />">My List</a></li>
                             <li><a href="<c:url value="/manage" />">Settings</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="<c:url value="/logout" />">Log Out</a></li>

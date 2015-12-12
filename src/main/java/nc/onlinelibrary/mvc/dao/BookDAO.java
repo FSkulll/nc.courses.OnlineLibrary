@@ -11,4 +11,5 @@ public interface BookDAO {
     Book getBook(Integer id);
     Book returnBook(Integer id);
     List<Book> searchBooks(String str);
+    Book getBookWithRead(Integer id);
 }
