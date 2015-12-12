@@ -12,12 +12,6 @@ public class Issue {
     @GeneratedValue
     private Integer id;
 
-    @Column(name = "username")
-    private String reader;
-
-    @Column(name = "book_id")
-    private Integer book;
-
     @Column(name = "dateOfIssue")
     private Date dateOfIssue;
 
@@ -30,22 +24,6 @@ public class Issue {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getReader() {
-        return reader;
-    }
-
-    public void setReader(String reader) {
-        this.reader = reader;
-    }
-
-    public Integer getBook() {
-        return book;
-    }
-
-    public void setBook(Integer book) {
-        this.book = book;
     }
 
     public Date getDateOfIssue() {
