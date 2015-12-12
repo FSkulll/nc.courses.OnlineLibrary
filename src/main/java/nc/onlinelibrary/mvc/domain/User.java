@@ -24,13 +24,7 @@ public class User {
     @Column(name = "enabled")
     private Integer enabled;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")//????????????????????????????
-    private List<Book> booksListCurrent;//?????????????????????????????????????????????????
-
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinTable(name = "issue",
-            joinColumns = {@JoinColumn(name = "username") },
-            inverseJoinColumns = {@JoinColumn(name = "book_id")})
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "read")
     private List<Book> read;
 
     public String getUsername() {
@@ -55,14 +49,6 @@ public class User {
 
     public void setEnabled(Integer enabled) {
         this.enabled = enabled;
-    }
-
-    public List<Book> getBooksListCurrent() {
-        return booksListCurrent;
-    }
-
-    public void setBooksListCurrent(List<Book> booksListCurrent) {
-        this.booksListCurrent = booksListCurrent;
     }
 
     public List<Book> getRead() {

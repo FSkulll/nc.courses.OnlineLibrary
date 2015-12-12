@@ -60,7 +60,7 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public void addToReadList(Book book, String username) {
         User user = (User) sessionFactory.getCurrentSession().get(User.class, username);
-//        Hibernate.initialize(user.getRead());
-//        user.getRead().add(book);
+        Hibernate.initialize(user.getRead());
+        user.getRead().add(book);
     }
 }
