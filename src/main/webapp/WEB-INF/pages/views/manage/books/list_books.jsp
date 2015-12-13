@@ -26,7 +26,7 @@
                     <th>&nbsp;&nbsp;</th>
                     <td>${book.isbn}</td>
                     <th>&nbsp;&nbsp;</th>
-                    <td><a href="delete/${book.id}"><spring:message code="label.delete" /></a></td>
+                    <td><a href="delete/${book.bookId}"><spring:message code="label.delete" /></a></td>
                 </tr>
             </c:forEach>
         </table>

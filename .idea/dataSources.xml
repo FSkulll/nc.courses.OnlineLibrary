@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="528235065">
-    <data-source source="LOCAL" name="Oracle - @localhost" uuid="cfc8d151-6c93-4753-92f9-4a133eef0616">
-      <driver-ref>oracle</driver-ref>
-      <auto-commit>false</auto-commit>
-      <jdbc-driver>oracle.jdbc.OracleDriver</jdbc-driver>
-      <jdbc-url>jdbc:oracle:thin:@//localhost:1521/orcl.local</jdbc-url>
-    </data-source>
-    <data-source source="LOCAL" name="MySQL - onlinelibrary@localhost" uuid="32c72713-6639-4874-9a76-da49f87e6389">
+  <component name="DataSourceManagerImpl" format="xml" hash="3104055412">
+    <data-source source="LOCAL" name="MySQL - onlinelibrary@localhost" uuid="e2e39df3-62bc-479a-b873-54af475c6dab">
       <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>

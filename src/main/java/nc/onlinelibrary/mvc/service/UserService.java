@@ -1,15 +1,17 @@
 package nc.onlinelibrary.mvc.service;
 
 import nc.onlinelibrary.mvc.domain.Book;
-import nc.onlinelibrary.mvc.domain.User;
+import nc.onlinelibrary.mvc.domain.Issue;
+import nc.onlinelibrary.mvc.domain.Users;
 
 import java.util.List;
 
 public interface UserService {
-    void addUser(User user);
-    List<User> listUsers();
+    void addUser(Users user);
+    List<Users> listUsers();
     void deleteUser(String username);
-    User getUser(String username);
-    User getUserWithReadList(String username);
-    void addToReadList(Book book, String username);
+    Users getUser(String username);
+    List<Issue> getUserIssue(String username);
+    void addBookToList(Users user, Book book);
+    List<Book> getUserReadList(String username);
 }

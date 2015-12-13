@@ -1,83 +1,38 @@
 package nc.onlinelibrary.mvc.domain;
 
-import com.sun.xml.internal.messaging.saaj.util.ByteInputStream;
+import nc.onlinelibrary.mvc.domain.Users;
 
-import javax.imageio.ImageIO;
 import javax.persistence.*;
-import java.awt.image.BufferedImage;
-import java.io.*;
-import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Created by Gusev on 12.12.2015.
+ */
 @Entity
-@Table(name = "book")
-public class Book{
+public class Book {
+    private int bookId;
+    private String description;
+    private boolean available;
+    private Integer isbn;
+    private String name;
+    private String title;
+    private Author author;
+    private Category category;
+    private List<Issue> issueList;
 
     @Id
     @Column(name = "book_id")
     @GeneratedValue
-    private Integer id;
+    public int getBookId() {
+        return bookId;
+    }
 
-    @Column(name = "title")
-    private String title;
+    public void setBookId(int bookId) {
+        this.bookId = bookId;
+    }
 
+    @Basic
     @Column(name = "description")
-    private String description;
-
-    @Column(name = "isbn")
-    private Integer isbn;
-
-    @Column(name = "name")
-    private String name;
-
-    @ManyToOne
-    @JoinColumn(name = "author_id")
-    private Author author;
-
-    @ManyToOne
-    @JoinColumn(name = "category_id")
-    private Category category;
-
-    @Column(name = "available")
-    private boolean isAvailable;
-
-    @ManyToOne//?????????????????????????????????????????????????
-    @JoinColumn(name = "username")//?????????????????????????????????????????????????
-    private User owner;//?????????????????????????????????????????????????
-    
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinTable(name = "issue",
-            joinColumns = {@JoinColumn(name = "book_id")},
-            inverseJoinColumns = {@JoinColumn(name = "username")})
-    private List<User> read;
-
-    @Column(name = "cover")
-    private byte[] cover;
-
-    public boolean isAvailable() {
-        return isAvailable;
-    }
-
-    public void setIsAvailable(boolean isAvailable) {
-        this.isAvailable = isAvailable;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public String getDescription() {
         return description;
     }
@@ -86,6 +41,18 @@ public class Book{
         this.description = description;
     }
 
+    @Basic
+    @Column(name = "available")
+    public boolean getAvailable() {
+        return available;
+    }
+
+    public void setAvailable(boolean available) {
+        this.available = available;
+    }
+
+    @Basic
+    @Column(name = "isbn")
     public Integer getIsbn() {
         return isbn;
     }
@@ -94,6 +61,8 @@ public class Book{
         this.isbn = isbn;
     }
 
+    @Basic
+    @Column(name = "name")
     public String getName() {
         return name;
     }
@@ -102,22 +71,19 @@ public class Book{
         this.name = name;
     }
 
-    public User getOwner() {
-        return owner;
+    @Basic
+    @Column(name = "title")
+    public String getTitle() {
+        return title;
     }
 
-    public void setOwner(User owner) {
-        this.owner = owner;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public List<User> getRead() {
-        return read;
-    }
 
-    public void setRead(List<User> read) {
-        this.read = read;
-    }
-
+    @ManyToOne
+    @JoinColumn(name = "author_id")
     public Author getAuthor() {
         return author;
     }
@@ -126,19 +92,56 @@ public class Book{
         this.author = author;
     }
 
+    @ManyToOne
+    @JoinColumn(name = "category_id")
     public Category getCategory() {
         return category;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setCategory(Category categoryId) {
+        this.category = categoryId;
     }
 
-    public byte[] getCover() {
-        return cover;
+    public boolean isAvailable() {
+        return available;
     }
 
-    public void setCover(byte[] cover) {
-        this.cover = cover;
+    @OneToMany(mappedBy = "readBook")
+    public List<Issue> getIssueList() {
+        return issueList;
+    }
+
+    public void setIssueList(List<Issue> issueList) {
+        this.issueList = issueList;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Book book = (Book) o;
+
+        if (bookId != book.bookId) return false;
+        if (description != null ? !description.equals(book.description) : book.description != null) return false;
+        if (isbn != null ? !isbn.equals(book.isbn) : book.isbn != null) return false;
+        if (name != null ? !name.equals(book.name) : book.name != null) return false;
+        if (title != null ? !title.equals(book.title) : book.title != null) return false;
+        if (author != null ? !author.equals(book.author) : book.author != null) return false;
+        if (category != null ? !category.equals(book.category) : book.category != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = bookId;
+        result = 31 * result + (description != null ? description.hashCode() : 0);
+        result = 31 * result + (isbn != null ? isbn.hashCode() : 0);
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (title != null ? title.hashCode() : 0);
+        result = 31 * result + (author != null ? author.hashCode() : 0);
+        result = 31 * result + (category != null ? category.hashCode() : 0);
+        return result;
     }
 }

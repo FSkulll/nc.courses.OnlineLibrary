@@ -1,6 +1,6 @@
 package nc.onlinelibrary.mvc.web;
 
-import nc.onlinelibrary.mvc.domain.User;
+import nc.onlinelibrary.mvc.domain.Users;
 import nc.onlinelibrary.mvc.service.BookService;
 import nc.onlinelibrary.mvc.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +9,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -29,7 +29,7 @@ public class AccountController {
 
     @RequestMapping("/register")
     public String regPage(Model model){
-        model.addAttribute("user", new User());
+        model.addAttribute("user", new Users());
         return "register";
     }
 
@@ -39,7 +39,7 @@ public class AccountController {
     }
 
     @RequestMapping(value = "/create" ,method = RequestMethod.POST)
-    public String addUser(@Valid User user, BindingResult bindingResult) {
+    public String addUser(@Valid Users user, BindingResult bindingResult) {
         if(bindingResult.hasErrors()) return "register";
         userService.addUser(user);
         return "redirect:/index";
@@ -49,7 +49,7 @@ public class AccountController {
     public String readingList(Map<String, Object> map){
         map.put("username", SecurityContextHolder.getContext().getAuthentication().getName());
         map.put("user", SecurityContextHolder.getContext().getAuthentication().getPrincipal());
-        map.put("listBook", userService.getUserWithReadList(SecurityContextHolder.getContext().getAuthentication().getName()).getRead());
+        map.put("listIssue", userService.getUserIssue(SecurityContextHolder.getContext().getAuthentication().getName()));
         return "reading_list";
     }
 }

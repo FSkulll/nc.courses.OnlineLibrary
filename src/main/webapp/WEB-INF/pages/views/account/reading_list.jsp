@@ -3,30 +3,31 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="from" uri="http://www.springframework.org/tags/form" %>
-<a href="/create_book">Add new Book</a>
 </br>
 </br>
-<c:if test="${!empty listBook}">
+<c:if test="${!empty listIssue}">
   <div class="panel panel-default">
     <div class="panel-heading">Books</div>
     <table class="table">
       <tr>
         <th><spring:message code="label.title" /></th>
         <th>&nbsp;&nbsp;</th>
-        <th><spring:message code="label.description" /></th>
+        <th><spring:message code="label.dateofissue" /></th>
         <th>&nbsp;&nbsp;</th>
-        <th><spring:message code="label.isbn" /></th>
+        <th><spring:message code="label.dateofreturn" /></th>
         <th>&nbsp;&nbsp;</th>
       </tr>
-      <c:forEach items="${listBook}" var="book">
+      <c:forEach items="${listIssue}" var="issue">
         <tr>
-          <td>${book.title}</td>
+          <td>${issue.getReadBook().getTitle()}</td>
           <th>&nbsp;&nbsp;</th>
-          <td>${book.description}</td>
+          <td>${issue.dateOfIssue}</td>
           <th>&nbsp;&nbsp;</th>
-          <td>${book.isbn}</td>
+          <td>${issue.dateOfReturn}</td>
           <th>&nbsp;&nbsp;</th>
-          <td><a href="delete/${book.id}"><spring:message code="label.delete" /></a></td>
+          <c:if test="${issue.dateOfReturn == null}">
+            <td><a href="return/${issue.getReadBook().getBookId()}"><spring:message code="label.returnbook" /></a></td>
+          </c:if>
         </tr>
       </c:forEach>
     </table>

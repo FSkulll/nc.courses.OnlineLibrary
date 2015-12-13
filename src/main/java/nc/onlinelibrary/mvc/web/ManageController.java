@@ -1,15 +1,12 @@
 package nc.onlinelibrary.mvc.web;
 
 
-import nc.onlinelibrary.mvc.dao.UserDAO;
 import nc.onlinelibrary.mvc.domain.Book;
-import nc.onlinelibrary.mvc.domain.User;
 import nc.onlinelibrary.mvc.service.BookService;
 import nc.onlinelibrary.mvc.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;

@@ -3,53 +3,75 @@ package nc.onlinelibrary.mvc.domain;
 import javax.persistence.*;
 import java.util.List;
 
+/**
+ * Created by Gusev on 12.12.2015.
+ */
 @Entity
-@Table(name = "author")
 public class Author {
+    private int authorId;
+    private String authorInfo;
+    private String authorName;
+    private List<Book> bookList;
 
     @Id
     @Column(name = "author_id")
     @GeneratedValue
-    private Integer id;
+    public int getAuthorId() {
+        return authorId;
+    }
 
-    @Column(name = "author_name")
-    private String name;
+    public void setAuthorId(int authorId) {
+        this.authorId = authorId;
+    }
 
+    @Basic
     @Column(name = "author_info")
-    private String info;
+    public String getAuthorInfo() {
+        return authorInfo;
+    }
+
+    public void setAuthorInfo(String authorInfo) {
+        this.authorInfo = authorInfo;
+    }
+
+    @Basic
+    @Column(name = "author_name")
+    public String getAuthorName() {
+        return authorName;
+    }
+
+    public void setAuthorName(String authorName) {
+        this.authorName = authorName;
+    }
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "author")
-    private List<Book> books;
-
-    public Integer getId() {
-        return id;
+    public List<Book> getBookList() {
+        return bookList;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setBookList(List<Book> bookList) {
+        this.bookList = bookList;
     }
 
-    public String getName() {
-        return name;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Author author = (Author) o;
+
+        if (authorId != author.authorId) return false;
+        if (authorInfo != null ? !authorInfo.equals(author.authorInfo) : author.authorInfo != null) return false;
+        if (authorName != null ? !authorName.equals(author.authorName) : author.authorName != null) return false;
+
+        return true;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public List<Book> getBooks() {
-        return books;
-    }
-
-    public void setBooks(List<Book> books) {
-        this.books = books;
-    }
-
-    public String getInfo() {
-        return info;
-    }
-
-    public void setInfo(String info) {
-        this.info = info;
+    @Override
+    public int hashCode() {
+        int result = authorId;
+        result = 31 * result + (authorInfo != null ? authorInfo.hashCode() : 0);
+        result = 31 * result + (authorName != null ? authorName.hashCode() : 0);
+        return result;
     }
 }

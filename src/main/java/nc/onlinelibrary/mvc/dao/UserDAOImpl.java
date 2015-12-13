@@ -6,6 +6,9 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
+
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -16,8 +19,8 @@ public class UserDAOImpl implements UserDAO {
     private SessionFactory sessionFactory;
 
     @Override
-    public void addUser(User user) {
-        User temp = (User) sessionFactory.getCurrentSession().get(User.class, user.getUsername());
+    public void addUser(Users user) {
+        Users temp = (Users) sessionFactory.getCurrentSession().get(Users.class, user.getUsername());
         if(temp == null) {
             user.setEnabled(1);
             sessionFactory.getCurrentSession().save(user);
@@ -30,20 +33,20 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public List listUsers() {
-        return sessionFactory.getCurrentSession().createQuery("from User").list();
+        return sessionFactory.getCurrentSession().createQuery("from Users").list();
     }
 
     @Override
     public void deleteUser(String username) {
-        User user = (User) sessionFactory.getCurrentSession().get(User.class, username);
+        Users user = (Users) sessionFactory.getCurrentSession().get(Users.class, username);
         if(user != null){
             sessionFactory.getCurrentSession().delete(user);
         }
     }
 
     @Override
-    public User getUser(String username) {
-        User user = (User) sessionFactory.getCurrentSession().get(User.class, username);
+    public Users getUser(String username) {
+        Users user = (Users) sessionFactory.getCurrentSession().get(Users.class, username);
         if(user != null){
             return user;
         }
@@ -51,16 +54,30 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public User getUserWithReadList(String username) {
-        User user = (User) sessionFactory.getCurrentSession().get(User.class, username);
-        Hibernate.initialize(user.getRead());
-        return user;
+    public List<Issue> getUserIssue(String username) {
+        Users user = (Users) sessionFactory.getCurrentSession().get(Users.class, username);
+        Hibernate.initialize(user.getIssueList());
+        return user.getIssueList();
     }
 
     @Override
-    public void addToReadList(Book book, String username) {
-        User user = (User) sessionFactory.getCurrentSession().get(User.class, username);
-        Hibernate.initialize(user.getRead());
-        user.getRead().add(book);
+    public void addBookToList(Users users, Book book) {
+        Issue issue = new Issue();
+        issue.setDateOfIssue(new Date());
+        issue.setReadBook(book);
+        issue.setReadUsername(users);
+        sessionFactory.getCurrentSession().save(issue);
+    }
+
+    @Override
+    public List<Book> getUserReadList(String username) {
+        List<Book> bookList = new ArrayList<Book>();
+
+        Users user = (Users) sessionFactory.getCurrentSession().get(Users.class, username);
+        for (Issue issue : user.getIssueList()) {
+            bookList.add(issue.getReadBook());
+        }
+
+        return bookList;
     }
 }

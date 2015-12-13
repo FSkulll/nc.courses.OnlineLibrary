@@ -1,11 +1,8 @@
-package nc.onlinelibrary.mvc.domain;
-
-import org.hibernate.validator.constraints.NotEmpty;
+package nc.onlinelibrary.mvc.backupdomain;
 
 import javax.persistence.*;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity

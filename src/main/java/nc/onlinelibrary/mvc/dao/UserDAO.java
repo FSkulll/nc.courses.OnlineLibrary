@@ -1,16 +1,18 @@
 package nc.onlinelibrary.mvc.dao;
 
 import nc.onlinelibrary.mvc.domain.Book;
-import nc.onlinelibrary.mvc.domain.User;
+import nc.onlinelibrary.mvc.domain.Issue;
+import nc.onlinelibrary.mvc.domain.Users;
 
 import java.util.List;
 
 public interface UserDAO {
-    void addUser(User user);
+    void addUser(Users user);
     List listUsers();
     void deleteUser(String username);
-    User getUser(String username);
-    User getUserWithReadList(String username);
-    void addToReadList(Book book, String username);
+    Users getUser(String username);
+    List<Issue> getUserIssue(String username);
+    void addBookToList(Users users, Book book);
+    List<Book> getUserReadList(String username);
 
 }

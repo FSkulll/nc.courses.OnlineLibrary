@@ -2,6 +2,7 @@ package nc.onlinelibrary.mvc.service;
 
 import nc.onlinelibrary.mvc.dao.BookDAO;
 import nc.onlinelibrary.mvc.domain.Book;
+import nc.onlinelibrary.mvc.domain.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -41,8 +42,8 @@ public class BookServiceImpl implements BookService {
 
     @Transactional
     @Override
-    public Book returnBook(Integer id) {
-        return bookDAO.returnBook(id);
+    public Book returnBook(Integer id, Users user) {
+        return bookDAO.returnBook(id, user);
     }
 
     @Transactional
@@ -59,7 +60,13 @@ public class BookServiceImpl implements BookService {
 
     @Transactional
     @Override
-    public Book getBookWithRead(Integer id) {
-        return bookDAO.getBookWithRead(id);
+    public Book getBookIssue(Integer id) {
+        return bookDAO.getBookIssue(id);
+    }
+
+    @Transactional
+    @Override
+    public void setAvailable(Integer book_id, boolean value) {
+        bookDAO.setAvailable(book_id, value);
     }
 }
