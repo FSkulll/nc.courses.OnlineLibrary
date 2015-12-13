@@ -3,6 +3,7 @@ package nc.onlinelibrary.mvc.web;
 import nc.onlinelibrary.mvc.domain.Book;
 import nc.onlinelibrary.mvc.domain.Issue;
 import nc.onlinelibrary.mvc.domain.Users;
+import nc.onlinelibrary.mvc.helpers.Search;
 import nc.onlinelibrary.mvc.service.BookService;
 import nc.onlinelibrary.mvc.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +12,12 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -68,5 +73,14 @@ public class HomeController {
 		bookService.returnBook(bookId, user);
 
 		return "redirect:/";
+	}
+	@RequestMapping(value = "/search", method = RequestMethod.POST)
+	public ModelAndView searchBook(@RequestParam("str") String str) {
+		ModelAndView view = new ModelAndView("books");
+		Map<String, Object> map = view.getModelMap();
+		map.put("username", SecurityContextHolder.getContext().getAuthentication().getName());
+		map.put("user", SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+		map.put("listBook", bookService.searchBook(str));
+		return view;
 	}
 }

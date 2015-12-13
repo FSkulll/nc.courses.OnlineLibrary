@@ -50,12 +50,6 @@ public class BookDAOImpl implements BookDAO {
     @Override
     public Book returnBook(Integer book_id, Users user) {
         Book book = (Book)sessionFactory.getCurrentSession().get(Book.class, book_id);
-//        Query query = sessionFactory.getCurrentSession().
-//                createQuery("from Issue where readBook =:book and readUsername =:user");
-//        for (Object o : query.list()) {
-//            Issue issue = (Issue) o;
-//            issue.setDateOfReturn(new Date());
-//        }
         List<Issue> issueList = sessionFactory.getCurrentSession().createQuery("from Issue").list();
         for (Issue issue : issueList) {
             if(issue.getReadBook().getBookId() == book_id && issue.getReadUsername().getUsername().equals(user.getUsername())){

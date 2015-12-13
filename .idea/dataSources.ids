@@ -12,8 +12,8 @@
       <table id="3" parent="1" name="book"/>
       <table id="4" parent="1" name="category"/>
       <table id="5" parent="1" name="issue"/>
-      <table id="6" parent="1" name="user_roles"/>
-      <table id="7" parent="1" name="users"/>
+      <table id="6" parent="1" name="users"/>
+      <table id="7" parent="1" name="user_roles"/>
       <column id="8" parent="2" name="author_id">
         <mandatory>1</mandatory>
         <data-type>int(11)</data-type>
@@ -131,32 +131,32 @@
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
-      <column id="39" parent="6" name="user_role_id">
+      <column id="39" parent="6" name="username">
         <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
-      </column>
-      <column id="40" parent="6" name="role">
         <data-type>varchar(255)</data-type>
       </column>
-      <column id="41" parent="6" name="username">
+      <column id="40" parent="6" name="enabled">
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="41" parent="6" name="password">
         <data-type>varchar(255)</data-type>
       </column>
       <key id="42" parent="6" name="PRIMARY">
-        <columns>user_role_id</columns>
+        <columns>username</columns>
         <primary>1</primary>
       </key>
-      <column id="43" parent="7" name="username">
+      <column id="43" parent="7" name="user_role_id">
         <mandatory>1</mandatory>
-        <data-type>varchar(255)</data-type>
-      </column>
-      <column id="44" parent="7" name="enabled">
         <data-type>int(11)</data-type>
       </column>
-      <column id="45" parent="7" name="password">
+      <column id="44" parent="7" name="role">
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="45" parent="7" name="username">
         <data-type>varchar(255)</data-type>
       </column>
       <key id="46" parent="7" name="PRIMARY">
-        <columns>username</columns>
+        <columns>user_role_id</columns>
         <primary>1</primary>
       </key>
     </database-model>

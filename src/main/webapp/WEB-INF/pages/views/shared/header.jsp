@@ -20,9 +20,9 @@
                 <li><a href="/index"><spring:message code="label.home"/></a></li>
                 <li><a href="/books"><spring:message code="label.books"/></a></li>
             </ul>
-            <form class="navbar-form navbar-left" role="search">
+            <form class="navbar-form navbar-left" action="search" method="post">
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="<spring:message code="label.placeholdersearch"/>">
+                    <input  type="text" name="str" class="form-control"/>
                 </div>
                 <button type="submit" class="btn btn-default"><spring:message code="label.search"/></button>
             </form>

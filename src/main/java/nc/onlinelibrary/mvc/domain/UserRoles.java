@@ -14,6 +14,7 @@ public class UserRoles {
 
     @Id
     @Column(name = "user_role_id")
+    @GeneratedValue
     public int getUserRoleId() {
         return userRoleId;
     }
