@@ -19,6 +19,16 @@ public class Book {
     private Author author;
     private Category category;
     private List<Issue> issueList;
+    private String owner;
+
+    @Column(name = "owner")
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
+    }
 
     @Id
     @Column(name = "book_id")

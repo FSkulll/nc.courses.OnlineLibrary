@@ -62,6 +62,8 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public void addBookToList(Users users, Book book) {
+        book.setOwner(users.getUsername());
+        sessionFactory.getCurrentSession().update(book);
         Issue issue = new Issue();
         issue.setDateOfIssue(new Date());
         issue.setReadBook(book);

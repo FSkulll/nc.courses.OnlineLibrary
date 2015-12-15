@@ -57,6 +57,7 @@ public class BookDAOImpl implements BookDAO {
             }
         }
         book.setAvailable(true);
+        book.setOwner(null);
         return book;
     }
 

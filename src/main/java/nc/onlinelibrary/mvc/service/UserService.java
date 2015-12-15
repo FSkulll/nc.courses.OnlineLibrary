@@ -13,5 +13,4 @@ public interface UserService {
     Users getUser(String username);
     List<Issue> getUserIssue(String username);
     void addBookToList(Users user, Book book);
-    List<Book> getUserReadList(String username);
 }

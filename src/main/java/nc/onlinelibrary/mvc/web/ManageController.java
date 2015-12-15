@@ -2,10 +2,10 @@ package nc.onlinelibrary.mvc.web;
 
 
 import nc.onlinelibrary.mvc.domain.Book;
-import nc.onlinelibrary.mvc.helpers.Search;
 import nc.onlinelibrary.mvc.service.BookService;
 import nc.onlinelibrary.mvc.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -26,12 +26,14 @@ public class ManageController {
     private BookService bookService;
 
     @RequestMapping("/manage")
+    @Secured("ROLE_ADMIN")
     private String managePage(Map<String, Object> map){
         map.put("username", SecurityContextHolder.getContext().getAuthentication().getName());
         map.put("user", SecurityContextHolder.getContext().getAuthentication().getPrincipal());
         return "manage";
     }
 
+    @Secured("ROLE_ADMIN")
     @RequestMapping("/books_list")
     private String listBooks(Map<String, Object> map){
         map.put("username", SecurityContextHolder.getContext().getAuthentication().getName());
@@ -40,6 +42,7 @@ public class ManageController {
         return "books_list";
     }
 
+    @Secured("ROLE_ADMIN")
     @RequestMapping("/create_book")
     private String createBook(Map<String, Object> map){
         map.put("username", SecurityContextHolder.getContext().getAuthentication().getName());
@@ -48,11 +51,14 @@ public class ManageController {
         return "addbook";
     }
 
+    @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/add" ,method = RequestMethod.GET)
     public String addBook(@ModelAttribute("book") Book book, BindingResult bindingResult) {
         bookService.addBook(book);
         return "redirect:/books_list";
     }
+
+    @Secured("ROLE_ADMIN")
     @RequestMapping("/delete/{bookId}")
     public String deleteBook(@PathVariable("bookId") Integer bookId) {
         bookService.removeBook(bookId);
@@ -60,6 +66,7 @@ public class ManageController {
     }
 
 
+    @Secured("ROLE_ADMIN")
     @RequestMapping("/users_list")
     private String listUsers(Map<String, Object> map){
         map.put("username", SecurityContextHolder.getContext().getAuthentication().getName());
@@ -68,6 +75,7 @@ public class ManageController {
         return "users_list";
     }
 
+    @Secured("ROLE_ADMIN")
     @RequestMapping("/remove/{username}")
     public String deleteUser(@PathVariable("username") String username) {
         userService.deleteUser(username);

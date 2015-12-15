@@ -16,19 +16,19 @@
 </c:if>
 <form method="POST" action="<c:url value="/j_spring_security_check"/>" class="form-horizontal">
     <div class="form-group">
-        <label for="username" class="col-md-2 control-label">Email</label>
+        <label for="username" class="col-md-2 control-label"><spring:message code="label.email" /></label>
         <div class="col-md-4">
             <input id="username" type="text" name="j_username" class="form-control"/>
         </div>
     </div>
     <div class="form-group">
-        <label for="password" class="col-md-2 control-label">Password</label>
+        <label for="password" class="col-md-2 control-label"><spring:message code="label.password" /></label>
         <div class="col-md-4">
             <input id="password" type="password" name="j_password" class="form-control"/>
         </div>
     </div>
     <div class="form-group">
-        <label for="rememberMe" class="col-md-2 control-label">Remember Me</label>
+        <label for="rememberMe" class="col-md-2 control-label"><spring:message code="label.remember" /></label>
         <div class="col-md-10">
             <input id="rememberMe" type="checkbox" name="_spring_security_remember_me" class="checkbox"/>
         </div>
@@ -41,5 +41,5 @@
     </div>
 </form>
 <p>
-    <a href="/register" type="button">Register as a new User</a>
+    <a href="/register" type="button"><spring:message code="label.registernew" /></a>
 </p>

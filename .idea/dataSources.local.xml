@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="MySQL - onlinelibrary@localhost" uuid="e2e39df3-62bc-479a-b873-54af475c6dab">
+      <secret-storage>master_key</secret-storage>
+      <user-name>root</user-name>
+      <schema-pattern>onlinelibrary.*</schema-pattern>
+      <default-schemas>onlinelibrary.*</default-schemas>
+    </data-source>
+  </component>
+</project>

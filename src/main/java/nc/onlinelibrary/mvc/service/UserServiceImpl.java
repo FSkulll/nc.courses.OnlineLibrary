@@ -53,10 +53,4 @@ public class UserServiceImpl implements UserService {
     public void addBookToList(Users user, Book book) {
         userDAO.addBookToList(user,book);
     }
-
-    @Transactional
-    @Override
-    public List<Book> getUserReadList(String username) {
-        return userDAO.getUserReadList(username);
-    }
 }

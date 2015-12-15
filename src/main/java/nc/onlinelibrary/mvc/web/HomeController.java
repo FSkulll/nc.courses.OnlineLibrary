@@ -1,13 +1,12 @@
 package nc.onlinelibrary.mvc.web;
 
 import nc.onlinelibrary.mvc.domain.Book;
-import nc.onlinelibrary.mvc.domain.Issue;
 import nc.onlinelibrary.mvc.domain.Users;
-import nc.onlinelibrary.mvc.helpers.Search;
 import nc.onlinelibrary.mvc.service.BookService;
 import nc.onlinelibrary.mvc.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,8 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.Date;
-import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -45,6 +42,7 @@ public class HomeController {
 
 
 	@RequestMapping("/books")
+	@Secured("ROLE_ADMIN")
 	public String listBooks(Map<String, Object> map){
 		map.put("username", SecurityContextHolder.getContext().getAuthentication().getName());
 		map.put("user", SecurityContextHolder.getContext().getAuthentication().getPrincipal());
@@ -53,8 +51,10 @@ public class HomeController {
 	}
 
 	@RequestMapping("/show/{bookId}")
-	public String showBook(@PathVariable("bookId") Integer bookId) {
-		bookService.getBook(bookId);
+	public String showBook(@PathVariable("bookId") Integer bookId, Map<String, Object> map) {
+		map.put("book",bookService.getBook(bookId));
+		map.put("username", SecurityContextHolder.getContext().getAuthentication().getName());
+		map.put("user", SecurityContextHolder.getContext().getAuthentication().getPrincipal());
 		return "show_info";
 	}
 

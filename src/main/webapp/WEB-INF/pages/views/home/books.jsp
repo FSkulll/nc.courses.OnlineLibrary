@@ -23,10 +23,13 @@
               <c:if test="${book.getAvailable()}">
                 <a href="get/${book.bookId}" class="btn btn-primary" role="button"><spring:message code="label.getbook" /></a>
               </c:if>
-              <c:if test="${!book.getAvailable()}">
+              <c:if test="${!book.getAvailable() && book.getOwner() == username}">
                 <a href="return/${book.bookId}" class="btn btn-primary" role="button"><spring:message code="label.returnbook" /></a>
               </c:if>
-              <a href="#" class="btn btn-default" role="button"><spring:message code="label.more" /></a>
+              <c:if test="${!book.getAvailable() && book.getOwner() != username}">
+                <label class="text text-danger"><spring:message code="label.available" /></label>
+              </c:if>
+              <a href="/show/${book.bookId}" class="btn btn-default" role="button"><spring:message code="label.more" /></a>
             </p>
           </div>
         </div>

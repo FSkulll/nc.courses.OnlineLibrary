@@ -5,19 +5,23 @@ http://www.springframework.org/schema/beans/spring-beans.xsd
 http://www.springframework.org/schema/security
 http://www.springframework.org/schema/security/spring-security.xsd">
 
-   <http access-denied-page="/error403.jsp" auto-config="true">
-          <intercept-url pattern="/index" access="ROLE_USER,ROLE_ANONYMOUS" />
-          <intercept-url pattern="/add*" access="ROLE_USER" />
-          <intercept-url pattern="/register" access="ROLE_ANONYMOUS"/>
-          <intercept-url pattern="/delete/*" access="ROLE_ADMIN" />
-          <form-login login-page="/login" default-target-url="/index"
-                      authentication-failure-url="/login?error=true" />
-          <logout logout-url="/logout" logout-success-url="/index" />
-          <anonymous username="guest" granted-authority="ROLE_ANONYMOUS" />
-          <remember-me />
-   </http>
+
 
     <global-method-security secured-annotations="enabled"/>
+
+   <http access-denied-page="/error403.jsp" auto-config="true">
+      <intercept-url pattern="/index" access="ROLE_USER,ROLE_ANONYMOUS" />
+      <intercept-url pattern="/add*" access="ROLE_USER" />
+      <intercept-url pattern="/register" access="ROLE_ANONYMOUS"/>
+      <intercept-url pattern="/delete/*" access="ROLE_ADMIN" />
+       <intercept-url pattern="/users_list" access="ROLE_ADMIN" />
+       <intercept-url pattern="/books_list" access="ROLE_ADMIN" />
+      <form-login login-page="/login" default-target-url="/index"
+                  authentication-failure-url="/login?error=true" />
+      <logout logout-url="/logout" logout-success-url="/index" />
+      <anonymous username="guest" granted-authority="ROLE_ANONYMOUS" />
+      <remember-me />
+   </http>
 
 
     <beans:bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">

@@ -29,13 +29,13 @@
             <ul class="nav navbar-nav navbar-right">
                 <c:if test="${username == 'admin'}">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Manage<span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><spring:message code="label.manage" /><span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="/books_list"><spring:message code="label.books"/></a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="/users_list"><spring:message code="label.users"/></a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="#">Categories</a></li>
+                            <li><a href="#"><spring:message code="label.category" /></a></li>
                         </ul>
                     </li>
                 </c:if>
@@ -44,7 +44,7 @@
                 </c:if>
                 <c:if test="${username != 'guest' && user != null && username != null}">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hello, ${username}<span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><spring:message code="label.hello" />, ${username}<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="<c:url value="/reading_list" />"><spring:message code="label.books"/></a></li>
                             <li><a href="<c:url value="/manage" />"><spring:message code="label.settings"/></a></li>
